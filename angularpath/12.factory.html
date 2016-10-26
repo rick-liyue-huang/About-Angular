@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./node_modules/angular/angular.js"></script>
+</head>
+<body>
+
+    <div ng-app="demo.main">
+        <div ng-controller="mainController">
+
+
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('demo.main', []);
+
+
+        // use factory to create a self-define service
+        // the first arg is servicename
+        // the second arg is callback
+        app.factory('modelService', function () {
+            return [
+                {name: 'rick', age: 18, sex: 'male'},
+                {name: 'leo', age: 45, sex: 'female'}
+            ];
+        });
+        app.controller('mainController', function ($scope, modelService) {
+            console.log(modelService);
+        });
+    </script>
+</body>
+</html>

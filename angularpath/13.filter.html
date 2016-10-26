@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./node_modules/angular/angular.js"></script>
+</head>
+<body>
+
+<div ng-app="demo.main">
+    <div ng-controller="mainController">
+
+        <div ng-repeat="item in array | filter: {sex: 'male'}" >{{item.sex}}</div>
+    </div>
+</div>
+
+<script>
+    var app = angular.module('demo.main', []);
+
+    app.controller('mainController', function ($scope) {
+        $scope.array = [
+            {name: 'rick', age: 18, sex: 'male'},
+            {name: 'leo', age: 45, sex: 'female'}
+        ];
+    });
+</script>
+</body>
+</html>
