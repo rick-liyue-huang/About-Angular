@@ -1,0 +1,71 @@
+
+<!--1. create HTML doc, loading AngularJS lib
+    2. in HTML doc, create form, form includes username, password, and submit button, this is a static page
+    3. in static page, adds AngularJS directives
+    4. create an AngularJS module (ng-app), and AngularJS controller (ng-controller)
+      var app = angular.module('app', []);   app.controller('mainController', function() {})
+    5. designate AngularJS framework running where ng-app='app'
+    6. designate mainController $scope running where
+    7. create data object, create action object, and put the function on the action, bind data and action with $scope
+    8. binding data and action with model by directive-->
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>login sample</title>
+    <script src="./node_modules/angular/angular.js"></script>
+</head>
+<body ng-controller="mainController">
+
+<form ng-submit="action.send()">
+
+    <table>
+        <tr>
+            <td>username: </td>
+            <td><input type="text" name="username" ng-model="data.username"></td>
+        </tr>
+
+        <tr>
+            <td>password: </td>
+            <td><input type="password" name="password" ng-model="data.password"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="Login"></td>
+        </tr>
+    </table>
+</form>
+
+
+<script>
+
+    var app = angular.module('app', []);
+    app.controller('mainController', function ($scope) {
+        $scope.data = {};
+        $scope.action = {};
+
+        $scope.action.send = function () {
+            alert($scope.data.username + ' ; ' + $scope.data.password);
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

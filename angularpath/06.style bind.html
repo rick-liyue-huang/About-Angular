@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06.style binding</title>
+    <script src="./node_modules/angular/angular.js"></script>
+
+    <style>
+
+        .red {
+            background: red;
+        }
+        .green {
+            background: green;
+        }
+
+        .bd-yellow {
+            border: 5px solid yellow;
+        }
+
+    </style>
+</head>
+<body ng-app="demo">
+    <div ng-controller="mainController">
+
+        <div>
+
+            style binding:
+
+            <!--<div style="width: 100px; height: 100px;" ng-class="{red:true, green:true}"></div>-->
+            <div style="width: 100px; height: 100px;" ng-class="classDefine"></div>
+
+            <div style="width: 100px; height: 100px;" ng-style="styleDefine"></div>
+
+            <div style={{styleStr}}></div>
+
+        </div>
+
+        <div>
+
+            readonly:
+
+            <input type="checkbox" ng-model="readonly">
+            <input type="text" ng-readonly="readonly" value="readonly test">
+
+        </div>
+
+        <div>
+
+            disable:
+            <input type="checkbox" ng-model="disable">
+            <input type="text" ng-disabled="disable" value="disabled test">
+
+        </div>
+
+        <div>
+
+            hide:
+
+            <input type="checkbox" ng-model="hide">
+            <input type="text" ng-hide="hide" value="hide test">
+
+        </div>
+
+        <div>
+
+            click event
+
+            <button ng-click="clickHandler()">Click Me</button>
+
+        </div>
+
+        <div>
+
+            click event blur
+
+            <button ng-blur="handler('blur')">Click Me</button>
+
+        </div>
+
+        <div>
+
+            change
+            <input type="text" ng-change="handler('change')" ng-model="change">
+        </div>
+
+
+        <div>
+
+            ng-if
+            <input type="checkbox" ng-model="ngif">
+            <div ng-if="ngif">ng-if demo</div>
+
+
+        </div>
+
+        <div>
+
+            ng-switch
+
+            <input type="radio" value="a" name="r" ng-model="r">
+            <input type="radio" value="b" name="r" ng-model="r">
+            <input type="radio" value="c" name="r" ng-model="r">
+            <input type="radio" value="d" name="r" ng-model="r">
+
+            <div ng-switch="r">
+                <div ng-switch-when="a">a</div>
+                <div ng-switch-when="b">b</div>
+                <div ng-switch-when="c">c</div>
+                <div ng-switch-default="">abcd</div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+<script>
+
+    var app = angular.module(('demo'), []);
+
+    app.controller('mainController', function ($scope) { // $scope is dependency injection
+
+        $scope.classDefine = {
+            red: true,
+            green: false,
+            "bd-yellow": true
+        };
+
+        $scope.styleDefine = {
+            "width": "200px",
+            "height": "200px",
+            "background-color": "blue"
+        };
+
+        $scope.styleStr = "width: 100px; height: 100px; background: black"
+
+        $scope.clickHandler = function () {
+            alert('button has been click');
+        };
+
+        $scope.handler = function (str) {
+            alert(str);
+        };
+
+        $scope.change = 'change demo';
+
+
+    });
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./node_modules/angular/angular.js"></script>
+
+    <style>
+
+        .bg-blue {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body ng-app="demo.main">
+
+<div ng-controller="mainController">
+
+    <table>
+
+        <tr>
+            <th>name</th>
+            <th>age</th>
+            <th>sex</th>
+        </tr>
+
+        <tr ng-repeat="(key1, item) in infoes track by key1" ng-class="{'bg-blue':$even}">
+            <td>{{key1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.sex}}</td>
+        </tr>
+
+    </table>
+
+
+</div>
+
+
+<script>
+
+    var app = angular.module('demo.main', []);
+
+    app.controller('mainController', function ($scope) {
+
+        $scope.infoes = {
+            "rick": {name: 'rick', age: 18, sex: 'male'},
+            "leo": {name: 'leo', age: 19, sex: 'male'},
+            "jc": {name: 'jc', age: 20, sex: 'female'},
+            "aj": {name: 'aj', age: 20, sex: 'male'}
+        };
+    });
+
+
+</script>
+</body>
+</html>

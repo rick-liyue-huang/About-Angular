@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>02 AngularJS scope</title>
+	<script type="text/javascript" src="./node_modules/angular/angular.js"></script>
+</head>
+
+<!-- startwith ng- will call directive -->
+
+<!-- ng-app sets the module name, called start module -->
+<body ng-app='app'>
+
+<!-- designate which data is valid in which tag -->
+	<div ng-controller="mainController">
+		
+		{{name}}
+
+		<button ng-click="click()">click me</button>
+	</div>
+
+<script type="text/javascript">
+
+	 // create an angularJS module
+	 // 1. put the funcs together
+	  //2. expose the func to others
+	  // 3. import the other modules
+		var app = angular.module('app', ['a']); 
+
+		// app will import the a module, the first arg is the module name, and the second arg is the imported module.
+
+		// angularJS's module used to provide data
+		app.controller('mainController', function($scope) {
+			$scope.name = 'angular';
+			$scope.click = function() {
+				$scope.name = 'hello world';
+			}
+		});
+
+		angular.module('a', [])
+	</script>
+</body>
+</html>
+
+<!-- 双向数据绑定， 把数据和我们的HTML文档绑定起来，我们只需要关注数据就可以了，
+dom 操作由angularjs去管理， 一来方便二来不容易出错 -->
+
+<!-- angularJS provides many funcs such as ajax visit
+ self-define directive -->
+
+ <!-- 1. the default directive
+ 		2. angularJS scope, controller, module
+ 		3.angularJS common func, normally is Ajax
+ 		4.self-definition directive, function
+ 		5. dependency injection -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

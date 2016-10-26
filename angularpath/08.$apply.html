@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./node_modules/angular/angular.js"></script>
+</head>
+<body ng-app="demo.main">
+
+    <div ng-controller="outerController">
+
+        {{num}}
+        <input type="text" ng-model="num">
+    </div>
+
+
+<script>
+    var app = angular.module('demo.main', []);
+    app.controller('outerController', function ($scope, $timeout) {
+        $scope.num = 1;
+
+        $scope.$watch('num', function (newValue, oldValue) { // angular inner watch
+            console.log(newValue, oldValue, $scope);
+        });
+
+
+//        setTimeout(function () {
+//            $scope.num = 10;
+//            $scope.$apply(); // change value in time
+//        }, 1000);
+
+        $timeout(function () {
+            $scope.num = 20;
+        }, 1000);
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./node_modules/angular/angular.js"></script>
+</head>
+<body ng-app="demo.main">
+
+    <div ng-controller="mainController">
+
+
+        <!--<a href="#link1">goto link1</a>-->
+        <!--<div id="link1" style="margin-top: 1500px">link1</div>-->
+
+
+        <!-- do the rote-->
+        <a href="#/a">goto a</a>
+        <a href="#/b">goto b</a>
+        <a href="#/c">goto c</a>
+
+        {{name}}
+    </div>
+
+    <script>
+
+        var app = angular.module('demo.main', []);
+        app.controller('mainController', function ($scope, $location) {
+            console.log($location);
+
+            $scope.location = $location;
+
+            $scope.name = 'index';
+
+            $scope.$watch('location.path()', function (newValue, oldValue, scope) {
+                console.log(newValue, oldValue);
+                $scope.name = newValue;
+            });
+        });
+    </script>
+
+</body>
+</html>

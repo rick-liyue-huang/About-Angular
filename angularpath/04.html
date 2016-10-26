@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04.data binding</title>
+    <script src="./node_modules/angular/angular.js"></script>
+</head>
+<body ng-app="demo">
+    <div ng-controller="mainController">
+        <div ng-bind="name"></div>
+        <div>name: {{name}}</div>
+        <input type="text" ng-model="name">
+        <input type="text" ng-model="code">
+        <input type="checkbox" ng-model="trueorfalse">
+        <input type="radio" value="a" ng-model="r">
+        <input type="radio" value="b" ng-model="r">
+        <input type="radio" value="c" ng-model="r">
+
+    </div>
+
+    <div ng-controller="sub">
+        <div>{{name}}</div>
+    </div>
+
+<script>
+
+        var app = angular.module(('demo'), []);
+
+        app.controller('mainController', function ($scope) {
+            $scope.name = 'rick';
+        });
+
+        app.controller('sub', function ($scope) {
+            $scope.name = 'leo';
+        });
+</script>
+</body>
+</html>

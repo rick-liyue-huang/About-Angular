@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo.main">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./node_modules/angular/angular.js"></script>
+</head>
+<body ng-controller="mainController">
+
+    {{name}}
+
+    <br>
+
+    {{num + 1}}  <br>
+
+    <button ng-click="fn()">run</button>  <br>
+
+    <div>
+        {{data.num}} <br>
+        {{fn}}  <br>
+
+        {{data}}  <br>
+
+        {{data.num + 1}}  <br>
+
+        {{fn()}}  <br>
+
+        {{data.arr}}
+    </div>
+
+    <script>
+
+        var app = angular.module('demo.main', []);
+        app.controller('mainController', function ($scope, $parse, $rootScope) { // controller used to provide data scope
+            $scope.name = 'this is demo';
+            $scope.num = 1;
+            $scope.fn = function () {
+                console.log('run');
+                return 'run';
+            };
+
+            $scope.data = {
+                num: 1,
+                str: 'hello world',
+                arr: [1,2,3,4,5]
+            };
+
+            var parseFn = $parse('fn()');
+
+            var value = parseFn($scope);
+
+            console.log(value);
+
+            console.log($rootScope);
+            console.log($scope);
+        });
+
+    </script>
+</body>
+</html>
