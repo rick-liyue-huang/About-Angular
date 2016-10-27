@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo.main">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./node_modules/angular/angular.js"></script>
+</head>
+<body ng-controller="">
+
+    <h3>mark by tag</h3>
+    <demo-hello></demo-hello>
+
+    <h3>mark by attr</h3>
+    <div demo-hello=""></div>
+    <!--this is demo-hello directive-->
+
+
+
+<script>
+
+
+    var app = angular.module('demo.main', ['demo.directives']);
+
+    var directives = angular.module('demo.directives', []);
+
+    directives.directive('demoHello', function () {
+        // return a object used to tell the directive
+        return {
+            restrict: "EA", // set this directive can used in element and attribute
+            template:"<div>this is demo-hello directive</div>"
+        };
+
+
+    })
+</script>
+
+</body>
+</html>

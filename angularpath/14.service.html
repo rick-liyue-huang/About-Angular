@@ -1,0 +1,104 @@
+
+<!--we can define some service by 'factory' 'service' and 'provider'-->
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app.main">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./node_modules/angular/angular.js"></script>
+</head>
+<body ng-controller="mainController">
+
+{{name}} <br> {{name2}} <br> {{name3}} <br> {{name4}}
+
+<script>
+    var app = angular.module(('app.main'), []);
+
+//    define a service by factory
+    app.factory('dataService', function () {
+        return {
+            name: 'fromFactory'
+        };
+    });
+
+
+//    self-defined service also has dependency injection
+    app.factory('data2Service', function (dataService) {
+        return {
+            name: 'from others: ' + dataService.name
+        }
+    });
+
+
+//    the second method to define a service
+    app.service('data3Service', function () {
+       this.name = 'from service name';
+    });
+
+// the third method to define a service
+    app.provider('data4Service', function () {
+
+        var data = {
+            name: 'from provider',
+            url: ''
+        };
+
+        return {
+            $get: function () {
+                return {
+                    name: data.name,
+                    url: data.url
+                };
+            },
+
+            setName: function (nameStr) {
+                data.name = nameStr;
+            },
+
+            setUrl : function (url) {
+                data.url = url;
+            }
+        };
+    });
+
+
+//   before provide the service to other module, we can config the service, actually 'factory' and 'service' are capsulated
+//    by 'provider' method!!!!
+    app.config(function (data4ServiceProvider) {
+        console.log(data4ServiceProvider);
+        data4ServiceProvider.setName('provider data4Service')
+    });
+
+    app.controller('mainController', function ($scope, dataService, data2Service, data3Service, data4Service) {
+        $scope.name = dataService.name;
+        $scope.name2 = data2Service.name;
+        $scope.name3 = data3Service.name;
+        $scope.name4 = data4Service.name;
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

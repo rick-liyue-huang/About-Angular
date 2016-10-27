@@ -69,13 +69,13 @@
                 <td>{{userinfo.status}}</td>
                 <td>
                     <!--which way is better？-->
-                    <button class="btn btn-xs btn-success" ng-if="userinfo.status =='inviting'" ng-click="accept(userInfo)">
+                    <button class="btn btn-xs btn-success" ng-if="userinfo.status =='inviting'" ng-click="accept(userinfo)">
                         accept invite
                     </button>
-                    <button class="btn btn-xs btn-danger" ng-if="userinfo.status =='inviting'" ng-click="refuse(userInfo)">
+                    <button class="btn btn-xs btn-danger" ng-if="userinfo.status =='inviting'" ng-click="refuse(userinfo)">
                         refuse invite
                     </button>
-                    <button class="btn btn-xs btn-default" ng-click="remove(userInfo)">remove</button>
+                    <button class="btn btn-xs btn-default" ng-click="remove(userinfo)">remove</button>
                 </td>
             </tr>
         </table>
@@ -139,19 +139,19 @@
             $scope.mobile = "";
         };
 
-        $scope.remove = function (userInfo) {
+        $scope.remove = function (userinfo) {
 
 //            get userInfo index of the model array
-            var index = model.indexOf(userInfo);
+            var index = model.indexOf(userinfo);
             model.splice(index, 1);
         };
 
-        $scope.accept = function (userInfo) {
-            userInfo.status = 'accept'
+        $scope.accept = function (userinfo) {
+            userinfo.status = 'accept'
         };
 
-        $scope.refuse = function (userInfo) {
-            userInfo.status = 'refused'
+        $scope.refuse = function (userinfo) {
+            userinfo.status = 'refused'
         };
 
         $scope.location = $location;
