@@ -24,3 +24,7 @@
     c. bind the 'remove' envent with 'remove' button
     d. bind accept and refuse event with responding button
 6. listen $location.path(), by  $scope.$watch('location.path()'), when path is different, change the nameList.
+
+
+7. at last, we will capsulate the original code by module and template
+ and re-write in indexCapsulate.html

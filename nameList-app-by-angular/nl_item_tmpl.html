@@ -1,0 +1,14 @@
+<td>{{nlId}}</td>
+<td>{{nlUser.name}}</td>
+<td>{{nlUser.phone}}</td>
+<td>{{nlUser.status}}</td>
+
+<td>
+    <button class="btn btn-xs btn-success" ng-if="nlUser.status == 'inviting'" ng-click="nlUser.accept()">
+        Accept
+    </button>
+    <button class="btn btn-danger btn-xs" ng-if="nlUser.status== 'inviting'" ng-click="nlUser.refuse()">
+        Refuse
+    </button>
+    <button class="btn btn-xs btn-default" ng-click="nlRemoveFn(nlUser)">Remove</button>
+</td>

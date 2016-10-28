@@ -2,16 +2,16 @@
 <html lang="en" ng-app="nameList.main">
 <head>
     <meta charset="UTF-8">
-    <title>NameList</title>
+    <title>Title</title>
     <script src="./node_modules/jquery/dist/jquery.js"></script>
     <script src="./node_modules/angular/angular.js"></script>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap-theme.css">
+
     <style>
         li {
             float: left;
         }
-
         body {
             padding-top: 50px;
         }
@@ -23,150 +23,137 @@
     <div class="row">
         <h1>Invite NameList</h1>
     </div>
-    <div class="row" style="padding-top: 30px;">
+
+    <div class="row" style="padding-top: 30px">
         <div class="col-xs-3">
             <div class="input-group">
-                  <span class="input-group-addon">
-                      username
-                  </span>
-                <input type="text" ng-model="name" class="form-control" placeholder="enter username">
+                <span class="input-group-addon">
+                    Username:
+                </span>
+                <input ng-model="name" type="text" class="form-control" placeholder="please enter username">
             </div>
         </div>
+
         <div class="col-xs-8">
             <div class="input-group">
-                  <span class="input-group-addon">
-                      mobile number
-                  </span>
-                <input type="text" ng-model="mobile" class="form-control" placeholder="enter mobile number">
+                <span class="input-group-addon">
+                    Phone Number:
+                </span>
+                <input ng-model="phone" type="number" class="form-control" placeholder="please enter phone number">
             </div>
         </div>
+
         <div class="col-xs-1">
-            <button class="btn btn-success" ng-click="invite()">invite</button>
+            <button class="btn btn-success" ng-click="invite()">Invite</button>
         </div>
     </div>
 
     <div class="row" style="padding-top: 30px;">
-        <a class="btn btn-success btn-xs " href="#/all">show all</a>
-        <a class="btn btn-success btn-xs " href="#/invite">show invited</a>
-        <a class="btn btn-success btn-xs " href="#/accept">show accept</a>
-        <a class="btn btn-success btn-xs " href="#/refuse">show refuse</a>
+        <a class="btn btn-success btn-xs" href="#/all">Show All</a>
+        <a class="btn btn-success btn-xs" href="#/inviting">Show Inviting</a>
+        <a class="btn btn-success btn-xs" href="#/accept">Show Accept</a>
+        <a class="btn btn-success btn-xs" href="#/refuse">Show Refuse</a>
     </div>
 
     <div class="row" style="padding-top: 30px;">
         <table class="table table-bordered">
             <tr>
-                <th style="">id</th>
-                <th style="">username</th>
-                <th style="">mobile</th>
-                <th style="">status</th>
-                <th>operate</th>
-
+                <th style="width: 50px;">ID</th>
+                <th style="width: 100px;">Username</th>
+                <th style="width: 150px;">Phone Number</th>
+                <th style="width: 100px;">Status</th>
+                <th>Operate</th>
             </tr>
-            <tr ng-repeat="userinfo in nameList">
+            <tr ng-repeat="user in nameList">
                 <td>{{$index + 1}}</td>
-                <td>{{userinfo.name}}</td>
-                <td>{{userinfo.mobile}}</td>
-                <td>{{userinfo.status}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.status}}</td>
                 <td>
-                    <!--which way is better？-->
-                    <button class="btn btn-xs btn-success" ng-if="userinfo.status =='inviting'" ng-click="accept(userinfo)">
-                        accept invite
-                    </button>
-                    <button class="btn btn-xs btn-danger" ng-if="userinfo.status =='inviting'" ng-click="refuse(userinfo)">
-                        refuse invite
-                    </button>
-                    <button class="btn btn-xs btn-default" ng-click="remove(userinfo)">remove</button>
+                    <button class="btn btn-success btn-xs" ng-click="accept(user)" ng-if="user.status=='inviting'">Accept</button>
+                    <button class="btn btn-danger btn-xs" ng-click="refuse(user)" ng-if="user.status=='inviting'">Refuse</button>
+                    <button class="btn btn-default btn-xs" ng-click="remove(user)">Remove</button>
                 </td>
             </tr>
         </table>
     </div>
+
 </div>
-
-
 <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <script>
 
-
-    // model
     var model = [
-        {name: 'Rick', mobile: '18612345678', status: 'inviting'},
-        {name: 'Leo', mobile: '18612345690', status: 'accept'}
+        {name: 'Rick', phone: '0400123456', status: 'inviting' },
+        {name: 'Leo', phone: '0411123456', status: 'accept'}
     ];
 
-
-    // create module and controller
     var app = angular.module('nameList.main', []);
-
     app.controller('mainController', function ($scope, $location) {
 
-        // vm is $scope
-        $scope.nameList = model; // put the model on $scope
+
+        // in this app, the 'vm' is $scope
+        $scope.nameList = model;
 
         $scope.invite = function () {
-            // 1. get the user input
 
+//            get the user input
             var name = $scope.name;
-            var mobile = $scope.mobile;
+            var phone = $scope.phone;
 
-            // 2. create a object and push in array
-            var userinfo = {name: name, mobile: mobile, status: 'inviting'};
+//            create a new username
+            var newUser = {name: name, phone: phone, status: 'inviting'};
 
-
-
-            // 4. define the added data is valid
+//            define whether the new user is valid
             var isOk = true;
 
-            // 4.1 user could not be empty
-            if (!name || !mobile) {
+            // username and phone cannot be empty
+            if (!name || !phone) {
                 isOk = false;
             }
 
-            // 4.2 mobile is repeated
+            // phone number can not be repeated
             model.forEach(function (value, index, array) {
-                isOk = isOk && (value.mobile != mobile);
+                isOk = isOk && (value.phone != phone)
             });
 
-
-
             if (isOk) {
-                model.push(userinfo);
+                model.push(newUser);
             } else {
-                alert('data is invalid');
+                alert('What you input is invalid!');
             }
 
-            // 3. after adding, clear the input tag
+            // after added, empty the input tag
             $scope.name = "";
-            $scope.mobile = "";
+            $scope.phone = "";
+
         };
 
-        $scope.remove = function (userinfo) {
+        $scope.accept = function (user) {
+            user.status = 'accept';
+        };
 
-//            get userInfo index of the model array
-            var index = model.indexOf(userinfo);
+        $scope.refuse = function (user) {
+            user.status = 'refuse';
+        };
+
+        $scope.remove = function (user) {
+            console.log(user);
+
+            // get the index of user in model
+            var index = model.indexOf(user);
             model.splice(index, 1);
-        };
-
-        $scope.accept = function (userinfo) {
-            userinfo.status = 'accept'
-        };
-
-        $scope.refuse = function (userinfo) {
-            userinfo.status = 'refused'
         };
 
         $scope.location = $location;
 
-
-        // based on the different path to show the different nameList
-        $scope.$watch('location.path()', function (newValue, oldValue) {
-
-            switch(newValue) {
+        $scope.$watch('location.path()', function (newVal, oldVal) {
+            switch (newVal) {
                 case '/all':
                     $scope.nameList = model;
                     break;
-                case '/invite':
+                case '/inviting':
                     $scope.nameList = model.filter(function (value) {
-                            return value.status == 'invite';
+                        return value.status == 'inviting';
                     });
                     break;
                 case '/accept':
@@ -176,17 +163,22 @@
                     break;
                 case '/refuse':
                     $scope.nameList = model.filter(function (value) {
-                        return value.status == 'refused';
+                        return value.status == 'refuse';
                     });
                     break;
             }
-        });
+        })
     });
 
-
 </script>
+
 </body>
 </html>
+
+
+
+
+
 
 
 
