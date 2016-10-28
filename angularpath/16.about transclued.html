@@ -7,21 +7,17 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap-theme.css">
 </head>
-<body ng-controller="mainController">
+<body>
 
 
-<demo-hello>this is a demo project</demo-hello>
+    <demo-hello>this is a demo project</demo-hello>
 
 <script>
 
     var app = angular.module('demo.main', ['demo.directives']);
-
-    // create a module used to store the directives
     var directives = angular.module('demo.directives', []);
 
     directives.directive('demoHello', function () {
-
-        // return a function used to tell the details of directive
         return {
             restrict: "EA",
             templateUrl: "1501.template.html",

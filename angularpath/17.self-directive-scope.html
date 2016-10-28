@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>self directives scope</title>
+    <script src="./node_modules/angular/angular.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap-theme.css">
+</head>
+<body ng-app="demo.main">
+<div ng-controller="mainController">
+    <demo-hello title="{{title}}" sub-title="{{subTitle}}"></demo-hello>
+</div>
+<script>
+    var app = angular.module('demo.main', ['demo.directives']);
+
+    var directives = angular.module('demo.directives', []);
+
+    directives.directive('demoHello', function () {
+
+        return {
+            restrict: "EA",
+            templateUrl: "1701.template.html",
+            transclude: true,
+            replace: true,
+
+            scope: {
+                "title": "@",  // @ used to bind the string
+                "subTitle": "@"
+            }
+        };
+    });
+
+    app.controller('mainController', function ($scope) {
+        $scope.title = "this is main title";
+        $scope.subTitle = "this is subTitle";
+    });
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

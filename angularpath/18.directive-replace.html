@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap-theme.css">
 </head>
-<body ng-controller="mainController">
+<body>
 
 
 <demo-hello>this is a demo project</demo-hello>
@@ -23,10 +23,10 @@
 
         // return a function used to tell the details of directive
         return {
-            restrict: "EA",
-            templateUrl: "1501.template.html",
-            transclude: true,
-            replace: true
+            restrict: "EA", // set this directive can be element or atrribute
+            template: "<div>this is demo-hello directive<div ng-transclude></div><div ng-transclude></div></div>",
+            replace: true, //
+            transclude: true // if have transclude, will insert the original content to designated tag
         };
     });
 
