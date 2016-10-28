@@ -5,7 +5,7 @@
 ### Model: list array
 
 ### $scope:
-        1. thw shown data in view
+        1. the shown data in view
         2. the visited user name, phonenumber, and some 'visit' event by button
 
 ### view: module
