@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demo.main">
+<head>
+    <meta charset="UTF-8">
+    <title>bootstrap dropdown</title>
+    <script src="./node_modules/angular/angular.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body>
+
+    <demo-select demo-options="getOptions()"></demo-select>
+
+    <!--
+
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Dropdown
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li ng-repeat="(key, value) in options"><a ng-href="{{value}}">{{key}}</a></li>
+
+        </ul>
+    </div>
+    -->
+<script>
+
+    /*
+    * <div class="dropdown">
+     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+     Dropdown
+     <span class="caret"></span>
+     </button>
+     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+     <li><a href="#">Action</a></li>
+     <li><a href="#">Another action</a></li>
+     <li><a href="#">Something else here</a></li>
+     <li role="separator" class="divider"></li>
+     <li><a href="#">Separated link</a></li>
+     </ul>
+     </div>
+    * */
+
+    var template = `
+<div class="dropdown"  ng-controller="mainController">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Dropdown
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li ng-repeat="(key, value) in options"><a ng-href="{{value}}">{{key}}</a></li>
+
+        </ul>
+    </div>
+`;
+
+    var app = angular.module('demo.main', []);
+
+    app.controller('mainController', function ($scope) {
+        $scope.options = {
+            "HomePage": "#/index",
+            "About": "#/about"
+        }
+    });
+    app.directive('demoSelect', function () {
+
+        return {
+            // give the details of the self directive
+            restrict: "E", //
+            template: template,
+            scope:  {  // define how the inner scope interact with the outer scope
+                demoOptions: "<" //
+            }
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

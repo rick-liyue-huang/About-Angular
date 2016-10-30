@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ml.main">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie List</title>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/angular/angular-route.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+<body>
+
+<div ng-view></div>
+
+
+<script src="./services/jsonpService.js"></script>
+<script src="./services/modelService.js"></script>
+<script src="./movie_list/movie_list_controller.js"></script>
+<script src="./movie_detail/movie_detail.controller.js"></script>
+<script src="./app.js"></script>
+
+</body>
+</html>
