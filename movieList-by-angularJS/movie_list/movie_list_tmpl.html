@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-10">
+            <ul class="nav nav-tabs">
+                <li ><a href="#/list/in_theaters/1">In Theater</a></li>
+                <li ><a href="#/list/coming_soon/1">Coming Soon</a></li>
+                <li ><a href="#/list/top250/1">Top250</a></li>
+            </ul>
+        </div>
+        <div class="col-xs-2">
+            <span style="font-size: 35px;float: right;">Movie List</span>
+        </div>
+    </div>
+    <div ng-if="vm.loading">
+        is loading......
+    </div>
+    <div ng-if="!vm.loading" class="row">
+        <ol class="breadcrumb">
+            <li>Movie List</li>
+            <li>{{vm.pager.category}}</li>
+            <li class="active">No. {{vm.pager.curr}} page(Total {{vm.pager.max}} page)</li>
+        </ol>
+    </div>
+    <div ng-if="!vm.loading" class="row" style="margin-top: 10px;">
+        <div class="col-xs-4" ng-repeat="subject in vm.data">
+            <div class="thumbnail img-thumbnail">
+                <img ng-src="{{subject.images.large}}"
+                     style="height: 420px;overflow-y: hidden;"
+                     alt="{{subject.title}}">
+                <div class="caption" style="text-align:center;">
+                    <a ng-href="#/detail/{{subject.id}}">{{subject.title}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!vm.loading" class="row">
+        <div class="col-xs-12">
+            <ul class="pagination pull-right">
+                <li>
+                    <a ng-href="#/list/{{vm.pager.category}}/{{vm.pager.prev}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;Pervious</span>
+                    </a>
+                </li>
+                <li>
+                    <a ng-href="#/list/{{vm.pager.category}}/{{vm.pager.next}}" aria-label="Next">
+                        <span aria-hidden="true">Next&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
