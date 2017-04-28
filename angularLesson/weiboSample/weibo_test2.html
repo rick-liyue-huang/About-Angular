@@ -1,0 +1,201 @@
+<!doctype html>
+<html ng-app="rick-weibo">
+<head>
+<meta charset="utf-8">
+<title>Simulate Weibo By Angular and PHP using Ajax</title>
+<link href="./style/weibo.css" rel="stylesheet" type="text/css" />
+<script src="./js/angular.js"></script>
+<script>
+
+    let app = angular.module('rick-weibo', []);
+
+    app.controller('weibo', function($scope, $http) {
+        $scope.replies = [];
+
+        // show reply
+        
+
+        function getPage(p) {
+            var headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': '*'
+            };
+
+            $http.get('weibo.php', 
+            
+                {
+                    headers : headers,
+                    params: {act: 'get', page: p}
+                
+            }).success(function(arr) {
+                console.log(arr);
+
+                $scope.replies = arr;
+
+            }).error(function() {
+                alert('read wrong');
+            });
+
+        }
+
+        
+        getPage(1);
+
+        $scope.getPage = getPage;
+
+        // load reply
+        $scope.submitMsg = function() {
+
+        var headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': '*'
+        };
+
+        $http.get('weibo.php',
+        {
+            headers : headers,
+            params: {act: 'get', page: 1}
+            
+        }).success(function(res) {
+            $scope.replies.unshift({
+                id: res.id, 
+                content: $scope.inputText, 
+                time: res.time, 
+                acc: 0, 
+                ref: 0});
+
+            if ($scope.replies.length > 6) {
+                $scope.replies.pop();
+            }
+
+            $scope.inputText = '';
+        }).error(function() {
+            alert('submit wrong');
+        });
+    };
+
+    // $scope.pages = [{num: 1, classname: " "}, {num: 2, classname: "active"}, {num: 3, classname: " "}];
+
+    $scope.pages = [];
+    $scope.curPage = 1;
+    $http.get('weibo.php', {
+        params: {act: 'get_page_count'}
+    }).success(function() {
+        for (var i = 1; i <= json.count; i++) {
+            if (i = $scope.curPage) {
+                $scope.pages.push
+            }
+        }
+    }).error(function() {
+        alert('wrong');
+    });
+
+        
+    //  access and ref
+
+    $scope.fnAcc = function(id) {
+        $http.get('weibo.php', {
+            params: {act: 'acc', id: id}
+        }).success(function() {
+            for (var i = 0; i < $scope.replies.length; i++) {
+                if ($scope.replies[i].id == id) {
+                    $scope.replies[i].acc++;
+                }
+            }
+        }).error(function() {
+            alert('wrong');
+        });
+    };
+
+    $scope.fnRef = function(id) {
+        
+        $http.get('weibo.php', {
+                params: {act: 'ref', id: id}
+            }).success(function() {
+                for (var i = 0; i < $scope.replies.length; i++) {
+                    if ($scope.replies[i].id == id) {
+                        $scope.replies[i].ref++;
+                    }
+                }
+            }).error(function() {
+                alert('wrong');
+            });
+    };
+
+
+
+    });
+
+</script>
+</head>
+
+<body ng-controller="weibo">
+<div class="znsArea">
+<!--reply-->
+     <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" id="tijiaoText" ng-model="inputText"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" ng-click="submitMsg()"/>
+            <span>(Enter for reply)</span>
+        </div>
+    </div>
+<!--replied-->
+    <div class="commentOn">
+        <div class="noContent" ng-show="replies.length === 0">none reply</div>
+        <div class="page">
+            <a href="javascript:;" class="{{i.classname}}" ng-repeat="i in pages" ng-click="getPage(i.num)">{{i.num}}</a>
+            
+        </div>
+
+        <div class="messList">
+        	<div class="reply" ng-repeat="reply in replies">
+                <p class="replyContent">{{reply.content}}</p>
+                <p class="operation">
+                    <span class="replyTime">{{reply.time*1000|date:"yyyy-MM-dd hh:mm:ss"}}</span>
+                    <span class="handle">
+                        <a href="javascript:;" class="top">{{reply.acc}} ng-click="fnAcc(reply.id)"</a>
+                        <a href="javascript:;" class="down_icon" ng-click="fnRef(reply.id)">{{reply.ref}}</a>
+                        <a href="javascript:;" class="cut">Delete</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+         
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+	
+
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../node_modules/angular/angular.js"></script>
+		<script>
+			
+			let app = angular.module('test', []);
+
+			app.controller('rick', ["$scope", "$http", (sc, ht) => {
+				sc.users = [{name: 'rick', age: 56, height: 167.9, time: 1493346444671}, {name: 'leo', age: 45, height: 164.5, time: 1493348444671}, {name: 'liyue', age: 34, height: 167.6, time: 1493846444671}];
+			}]);
+		</script>
+	</head>
+	<body ng-app="test">
+
+		<div ng-controller="rick">
+			
+				<li ng-repeat="user in users">
+					<h3>{{user.name}}</h3>
+					<span>{{user.time|date:"yyyy-MM-dd hh:mm:ss"}}</span>
+				</li>
+			</ul>
+		</div>
+		
+	</body>
+	</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

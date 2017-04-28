@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html ng-app="rick-weibo">
+<head>
+<meta charset="utf-8">
+<title>Simulate Weibo By Angular and PHP using Ajax</title>
+<link href="./style/weibo.css" rel="stylesheet" type="text/css" />
+<script src="./js/angular.js"></script>
+<script>
+
+    let app = angular.module('rick-weibo', []);
+
+    app.controller('weibo', function($scope, $http) {
+        $scope.replies = [{id: 1, content: "try", time: 1493352125, acc: 1, ref: 5},
+                          {id: 1, content: "try1", time: 1493552125, acc: 3, ref: 2},
+                          {id: 1, content: "try2", time: 1493752125, acc: 6, ref: 9}];
+
+
+    });
+
+</script>
+</head>
+
+<body ng-controller="weibo">
+<div class="znsArea">
+<!--reply-->
+     <div class="takeComment">
+        <textarea name="textarea" class="takeTextField" id="tijiaoText"></textarea>
+        <div class="takeSbmComment">
+            <input type="button" class="inputs" value="" />
+            <span>(Enter for reply)</span>
+        </div>
+    </div>
+<!--replied-->
+    <div class="commentOn">
+        <div class="noContent">none reply</div>
+        <div class="messList">
+        	<div class="reply" ng-repeat="reply in replies">
+                <p class="replyContent">{{reply.content}}</p>
+                <p class="operation">
+                    <span class="replyTime">{{reply.time*1000|date:"yyyy-MM-dd hh:mm:ss"}}</span>
+                    <span class="handle">
+                    	<a href="javascript:;" class="top">{{reply.acc}}</a>
+                        <a href="javascript:;" class="down_icon">{{reply.ref}}</a>
+                        <a href="javascript:;" class="cut">Delete</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="page">
+        	<a href="javascript:;" class="active">1</a>
+        	<a href="javascript:;">2</a>
+        	<a href="javascript:;">3</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

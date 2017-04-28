@@ -1,0 +1,62 @@
+
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../node_modules/angular/angular.js"></script>
+		<script>
+		//  firstly, we define the module
+			let app = angular.module('test', []);
+
+			// then in the module "rick", we define the controller
+			app.controller('rick', ($scope, $http) => {
+
+				// in the controller , we define the data
+				$scope.aa = 12;
+
+				$scope.alert= function(s) {
+					alert(s);
+				};
+
+				$scope.parseInt = function (s) {
+					parseInt(s);
+				};
+			});
+		</script>
+	</head>
+	<body ng-app="test">
+		<div ng-controller="rick">
+			aa: <div>{{aa}}</div>
+
+			<input type="text" ng-model="str">
+			<input type="button" value="btn" ng-click="alert(str)">
+
+
+			<input type="text" ng-model="a"> + <input type="text" ng-model="b"> = <div>{{parseInt(a)+parseInt(b)}}</div>
+
+		</div>
+
+		
+		
+	</body>
+	</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

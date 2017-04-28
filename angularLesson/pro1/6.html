@@ -1,0 +1,59 @@
+	
+ <!DOCTYPE html>
+ <html lang="en" ng-app="test">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>Document</title>
+ 	<script src="../node_modules/angular/angular.js"></script>
+ 	<script>
+ 		let app = angular.module('test', []);
+
+ 		app.controller('rick', ($scope, $http) => {
+
+ 			
+ 			$http.get('a.php', {
+ 				params: {a: 12, b: 6},
+ 				responseType: 'json'
+ 			}).then(function(res) {
+ 				alert(res.data);
+ 			}, function() {
+ 				alert('error');
+ 			});
+
+ 			 
+
+
+ 	</script>
+ </head>
+ <body>
+ 	<div ng-controller="rick">
+ 		
+ 	</div>
+ 	
+ </body>
+ </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

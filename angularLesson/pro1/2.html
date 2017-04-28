@@ -1,0 +1,51 @@
+
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script src="../node_modules/angular/angular.js"></script>
+	</head>
+	<body ng-app="">
+		
+	<!-- will use the 'ng-init' and 'ng-repeat' -->
+
+		<!-- init the data in the parent-element -->
+		<ul ng-init="arr = [12, 5, 7, 55]">
+		<!-- then we can use the data in child-element  -->
+			<li ng-repeat="item in arr">{{item}}</li>
+		</ul>
+
+		<ul ng-init="json={a: 'abc', b: 55, c: 99}">
+			<li ng-repeat="(key, value) in json">{{key}},{{value}}</li>
+		</ul>
+
+		<ul ng-init="users=[{name: 'rick', age: 18}, {name: 'leo', age: 26}, {name: 'liyue', age: 56}]">
+			<li ng-repeat="user in users">name: {{user.name}} -- age: {{user.age}}</li>
+		</ul>
+
+	</body>
+	</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
