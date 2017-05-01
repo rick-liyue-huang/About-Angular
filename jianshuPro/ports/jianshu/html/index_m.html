@@ -408,12 +408,17 @@
     color: black;text-shadow: 0 1px 0 white;opacity: 0.2;
 }
     </style>
+
+
     <script src="../js/angular.js" charset="utf-8"></script>
     <script src="../js/angular-route.js" charset="utf-8"></script>
+    <!-- <script src="../js/showArticleList.js"></script> -->
+    <script src="../js/cat_mod.js"></script>
+    <script src="../js/news_mod.js"></script>
     <script src="../js/app.js"></script>
 </head>
 
-<body ng-controller="newsData">
+<body  ng-controller="cateController">
 
 
     <div id="wrap">
@@ -507,8 +512,9 @@
     								<em>.</em>
     								<span class="time">大约在14小时之前</span>
     							</p>
-    							<!-- {{item.title}} -->
-                  				<a href="article_m.html?id={{item.articleId}}">article title</a>
+    							 
+                  				<a href="article_m.html?id={{item.articleId}}" ng-bind-html="item.title|showAsHtml"></a>
+                  				<!-- {{item.title}} -->
     							<div class="list-footer">
     								<a href="" target="_blank">阅读7851</a>
     								<a href="" target="_blank">评论89</a> 

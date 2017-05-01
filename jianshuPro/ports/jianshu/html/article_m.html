@@ -462,8 +462,9 @@ img{
     						<span>获得了212个喜欢</span>
     					</div>
     				</div>
-            <div ng-bind-html="articleInfo.title|showAsHtml">
-            </div>
+                    
+                    <div ng-bind-html="articleInfo.title|showAsHtml"></div>
+
     				<div class="meta-top">
     					<span class="wordage">字数2934</span>
     					<span class="views-count">阅读3940</span>
@@ -504,7 +505,12 @@ img{
     						</ul>
     					</span>
     				</div>
-    				<div class="show-content" ng-bind-html="articleInfo.content|showAsHtml">
+    				<div class="show-content">
+                    
+                        <div ng-bind-html="articleInfo.content|showAsHtml"></div>
+                        
+
+
     				</div>
     			</div>
     		</div>
@@ -568,3 +574,34 @@ img{
     </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

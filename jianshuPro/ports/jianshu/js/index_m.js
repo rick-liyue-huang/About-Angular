@@ -1,5 +1,5 @@
 
-	let app = angular.module('jianshu', ['cate_module'/*, 'news_module'*/]);
+	let app = angular.module('index_m', ['news_module', 'category_module']);
 
 //  this is the common filter.
 	app.filter('showAsHtml', function($sce) {
