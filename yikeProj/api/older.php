@@ -6,7 +6,7 @@
 
 	// echo date('Y-m-d', time());
 	
-	// php 获得时间
+	// php get time
 	$today = strtotime('-1day', time());
 
 	// 
